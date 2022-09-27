@@ -41,7 +41,7 @@ func New(config *Configuration) *OKXWS {
 	return b
 }
 
-func (ex *OKXWS) GetBalance() WalletBalance {
+func (ex *OKXWS) GetBalance() interface{} {
 	//	https://docs.ftx.com/#get-balances
 	//	получение времяни
 	client := &http.Client{
