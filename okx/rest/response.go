@@ -44,3 +44,8 @@ type dataWalletBalance struct {
 	TotalEq     string                 `json:"totalEq"`
 	UTime       string                 `json:"uTime"`
 }
+
+func OKXToWalletBalance(data interface{}) WalletBalance {
+	bt, _ := data.(WalletBalance)
+	return bt
+}

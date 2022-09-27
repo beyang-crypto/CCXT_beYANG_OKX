@@ -420,7 +420,7 @@ func (b *OKXWS) messageHandler(data []byte) {
 	default:
 		switch channel {
 		case "tickers":
-			instId, _ := jsonparser.GetString(data, "instId")
+			instId, _ := jsonparser.GetString(data, "arg", "instId")
 			var ticker Tickers
 			err := json.Unmarshal(data, &ticker)
 			if err != nil {

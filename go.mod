@@ -1,4 +1,4 @@
-module ccxt_beyang_okx
+module github.com/TestingAccMar/CCXT_beYANG_OKX
 
 go 1.18
 
