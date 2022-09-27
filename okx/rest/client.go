@@ -41,7 +41,7 @@ func New(config *Configuration) *OKXWS {
 	return b
 }
 
-func (ex *OKXWS) GetBalance(url string) WalletBalance {
+func (ex *OKXWS) GetBalance() WalletBalance {
 	//	https://docs.ftx.com/#get-balances
 	//	получение времяни
 	client := &http.Client{
@@ -53,7 +53,7 @@ func (ex *OKXWS) GetBalance(url string) WalletBalance {
 	secretKey := ex.cfg.SecretKey
 	passphrase := ex.cfg.APIKeyPassword
 
-	url += "/api/v5/account/balance"
+	url := ex.cfg.Addr + "/api/v5/account/balance"
 	signature_payload := fmt.Sprintf("%sGET/api/v5/account/balance", ts)
 	mac := hmac.New(sha256.New, []byte(secretKey))
 	mac.Write([]byte(signature_payload))
