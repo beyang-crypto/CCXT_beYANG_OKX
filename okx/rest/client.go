@@ -78,7 +78,7 @@ func (ex *OKXWS) GetBalance() interface{} {
 		log.Fatalln(err)
 	}
 	if ex.cfg.DebugMode {
-		log.Printf("BinanceWalletBalance %v", string(data))
+		log.Printf("OKXlletBalance %v", string(data))
 	}
 
 	var walletBalance WalletBalance

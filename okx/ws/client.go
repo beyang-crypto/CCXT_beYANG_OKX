@@ -214,7 +214,7 @@ func (b *OKXWS) SendCmd(cmd Cmd) {
 		log.Printf(`
 			{
 				"Status" : "Error",
-				"Path to file" : "CCXT_BEYANG_OKX/okx",
+				"Path to file" : "CCXT_BEYANG_OKX/okx/ws",
 				"File": "client.go",
 				"Functions" : "(b *OKXWS) sendCmd(cmd Cmd)",
 				"Function where err" : "json.Marshal",
@@ -238,7 +238,7 @@ func (b *OKXWS) Send(msg string) (err error) {
 				log.Printf(`
 					{
 						"Status" : "Error",
-						"Path to file" : "CCXT_BEYANG_OKX/okx",
+						"Path to file" : "CCXT_BEYANG_OKX/okx/ws",
 						"File": "client.go",
 						"Functions" : "(b *OKXWS) Send(msg string) (err error)",
 						"Function where err" : "b.conn.WriteMessage",
@@ -299,7 +299,7 @@ func (b *OKXWS) Start() error {
 					log.Printf(`
 					{
 						"Status" : "Error",
-						"Path to file" : "CCXT_BEYANG_OKX/okx",
+						"Path to file" : "CCXT_BEYANG_OKX/okx/ws",
 						"File": "client.go",
 						"Functions" : "(b *OKXWS) Start() error",
 						"Function where err" : "b.conn.ReadMessage",
@@ -345,7 +345,7 @@ func (b *OKXWS) Auth() {
 		log.Printf(`
 			{
 				"Status" : "Error",
-				"Path to file" : "CCXT_BEYANG_OKX/okx",
+				"Path to file" : "CCXT_BEYANG_OKX/okx/ws",
 				"File": "client.go",
 				"Functions" : "(b *OKXWS) Auth()",
 				"Function where err" : "json.Marshal",
@@ -367,7 +367,7 @@ func (b *OKXWS) connect() {
 	if err != nil {
 		log.Printf(`{
 						"Status" : "Error",
-						"Path to file" : "CCXT_BEYANG_OKX/okx",
+						"Path to file" : "CCXT_BEYANG_OKX/okx/ws",
 						"File": "client.go",
 						"Functions" : "(b *OKXWS) connect()",
 						"Function where err" : "websocket.DefaultDialer.Dial",
@@ -419,7 +419,7 @@ func (b *OKXWS) messageHandler(data []byte) {
 			log.Printf(`
 			{
 				"Status" : "Error",
-				"Path to file" : "CCXT_BEYANG_OKX/okx",
+				"Path to file" : "CCXT_BEYANG_OKX/okx/ws",
 				"File": "client.go",
 				"Functions" : "(b *OKXWS) messageHandler(data []byte)",
 				"Exchange" : "OKX",
@@ -431,7 +431,7 @@ func (b *OKXWS) messageHandler(data []byte) {
 		log.Printf(`
 			{
 				"Status" : "Error",
-				"Path to file" : "CCXT_BEYANG_OKX/okx",
+				"Path to file" : "CCXT_BEYANG_OKX/okx/ws",
 				"File": "client.go",
 				"Functions" : "(b *OKXWS) messageHandler(data []byte)",
 				"Exchange" : "OKX",
@@ -452,7 +452,7 @@ func (b *OKXWS) messageHandler(data []byte) {
 				log.Printf(`Huobi
 					{
 						"Status" : "Error",
-						"Path to file" : "CCXT_BEYANG_OKX/okx",
+						"Path to file" : "CCXT_BEYANG_OKX/okx/ws",
 						"File": "client.go",
 						"Functions" : "(b *OKXWS) messageHandler(data []byte)",
 						"Function where err" : "json.Unmarshal",
@@ -470,7 +470,7 @@ func (b *OKXWS) messageHandler(data []byte) {
 				log.Printf(`Huobi
 					{
 						"Status" : "Error",
-						"Path to file" : "CCXT_BEYANG_OKX/okx",
+						"Path to file" : "CCXT_BEYANG_OKX/okx/ws",
 						"File": "client.go",
 						"Functions" : "(b *OKXWS) messageHandler(data []byte)",
 						"Function where err" : "json.Unmarshal",
@@ -488,7 +488,7 @@ func (b *OKXWS) messageHandler(data []byte) {
 				log.Printf(`
 				{
 					"Status" : "INFO",
-					"Path to file" : "CCXT_BEYANG_OKX/okx",
+					"Path to file" : "CCXT_BEYANG_OKX/okx/ws",
 					"File": "client.go",
 					"Functions" : "(b *OKXWS) messageHandler(data []byte)",
 					"Exchange" : "OKX",
