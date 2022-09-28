@@ -85,6 +85,31 @@ func New(config *Configuration) *OKXWS {
 	return b
 }
 
+func (b *OKXWS) Subscribe(args ...string) {
+	switch len(args) {
+	case 1:
+		b.Subscribe1(args[0])
+	case 2:
+		b.Subscribe2(args[0], args[1])
+	case 3:
+		b.Subscribe3(args[0], args[1], args[2])
+	case 4:
+		b.Subscribe4(args[0], args[1], args[2], args[3])
+	default:
+		log.Printf(`
+			{
+				"Status" : "Error",
+				"Path to file" : "CCXT_BEYANG_OKX/okx/ws",
+				"File": "client.go",
+				"Functions" : "func (b *OKXWS) Subscribe(args ...string) ",
+				"Exchange" : "OKX",
+				"Data" : [%v],
+				"Comment" : "Слишком много аргументов"
+			}`, args)
+		log.Fatal()
+	}
+}
+
 // 	подписка только с channel
 func (b *OKXWS) Subscribe1(channel string) {
 
@@ -94,7 +119,7 @@ func (b *OKXWS) Subscribe1(channel string) {
 		Channel: channel,
 	})
 
-	b.subscribe((args))
+	b.subscribeArgs((args))
 }
 
 // 	подписка c 2 аргументами
@@ -128,7 +153,7 @@ func (b *OKXWS) Subscribe2(channel string, secondArg string) {
 		})
 	}
 
-	b.subscribe((args))
+	b.subscribeArgs((args))
 }
 
 // 	подписка с тремя аргументами
@@ -150,7 +175,7 @@ func (b *OKXWS) Subscribe3(channel string, arg1 string, arg2 string) {
 		})
 	}
 
-	b.subscribe((args))
+	b.subscribeArgs((args))
 }
 
 // 	подписка с четырьмя аргументами
@@ -167,10 +192,10 @@ func (b *OKXWS) Subscribe4(channel string, arg1 string, arg2 string, arg3 string
 		})
 	}
 
-	b.subscribe((args))
+	b.subscribeArgs((args))
 }
 
-func (b *OKXWS) subscribe(args []ArgsCmd) {
+func (b *OKXWS) subscribeArgs(args []ArgsCmd) {
 	cmd := Cmd{
 		Op:   "subscribe",
 		Args: args,

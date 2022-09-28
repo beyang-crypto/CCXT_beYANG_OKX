@@ -87,7 +87,7 @@ func (ex *OKXWS) GetBalance() interface{} {
 		log.Printf(`
 			{
 				"Status" : "Error",
-				"Path to file" : "CCXT_beYANG_OKX/okx/rrest",
+				"Path to file" : "CCXT_BEYANG_OKX/okx/rest",
 				"File": "client.go",
 				"Functions" : "(ex *OKXWS) GetBalance() (WalletBalance)",
 				"Function where err" : "json.Unmarshal",
