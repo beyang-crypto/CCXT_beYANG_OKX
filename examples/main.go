@@ -4,38 +4,39 @@ import (
 	"log"
 	"time"
 
-	rest "github.com/TestingAccMar/CCXT_beYANG_OKX/okx/rest"
 	ws "github.com/TestingAccMar/CCXT_beYANG_OKX/okx/ws"
 )
 
 func main() {
-	cfg := &rest.Configuration{
-		Addr:           rest.RestURL,
-		ApiKey:         "da092be5-da8f-4268-a786-f2dbd296dc27",
-		SecretKey:      "3602F5C69EBCC49BE99C4F31EB1D11B7",
-		APIKeyPassword: "Pravdavsile/1",
-		DebugMode:      true,
+	cfg := &ws.Configuration{
+		Addr:           ws.HostPublicWebSocket,
+		ApiKey:         "",
+		SecretKey:      "",
+		APIKeyPassword: "",
+		DebugMode:      false,
 	}
-	r := rest.New(cfg)
-	// b.Start()
+	b := ws.New(cfg)
+	b.Start()
 
-	// time.Sleep(5 * time.Second)
+	time.Sleep(5 * time.Second)
 
-	// pair := b.GetPair("BTC", "USDT")
-	// b.Subscribe2(ws.ChannelTicker, pair)
+	pair1 := b.GetPair("btc", "usdt")
+	pair2 := b.GetPair("eth", "usdt")
+	b.Subscribe(ws.ChannelTicker, []string{pair1})
+	b.Subscribe(ws.ChannelTicker, []string{pair2})
 
-	// b.On(ws.ChannelTicker, handleBookTicker)
-	// b.On(ws.ChannelTicker, handleBestBidPrice)
+	//b.On(ws.ChannelTicker, handleBookTicker)
+	b.On(ws.ChannelTicker, handleBestBidPrice)
 
-	go func() {
-		time.Sleep(1 * time.Second)
-		balance := rest.OKXToWalletBalance(r.GetBalance())
-		for _, datas := range balance.Data {
-			for _, details := range datas.Details {
-				log.Printf("coin = %s, total = %s", details.Ccy, details.CashBal)
-			}
-		}
-	}()
+	// go func() {
+	// 	time.Sleep(1 * time.Second)
+	// 	balance := rest.OKXToWalletBalance(r.GetBalance())
+	// 	for _, datas := range balance.Data {
+	// 		for _, details := range datas.Details {
+	// 			log.Printf("coin = %s, total = %s", details.Ccy, details.CashBal)
+	// 		}
+	// 	}
+	// }()
 
 	//	не дает прекратить работу программы
 	forever := make(chan struct{})
