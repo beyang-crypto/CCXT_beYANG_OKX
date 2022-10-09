@@ -13,7 +13,7 @@ func main() {
 		ApiKey:         "",
 		SecretKey:      "",
 		APIKeyPassword: "",
-		DebugMode:      false,
+		DebugMode:      true,
 	}
 	b := ws.New(cfg)
 	b.Start()
@@ -43,19 +43,19 @@ func main() {
 	<-forever
 }
 
-func handleBookTicker(symbol string, data ws.Tickers) {
-	log.Printf("OKX Ticker  %s: %v", symbol, data)
+func handleBookTicker(name string, symbol string, data ws.Tickers) {
+	log.Printf("%s Ticker  %s: %v", name, symbol, data)
 }
 
-func handleBestBidPrice(symbol string, data ws.Tickers) {
-	log.Printf("OKX BookTicker  %s: BestBidPrice : %s", symbol, data.Data[0].BidPx)
+func handleBestBidPrice(name string, symbol string, data ws.Tickers) {
+	log.Printf("%s BookTicker  %s: BestBidPrice : %s", name, symbol, data.Data[0].BidPx)
 }
 
-func handleWalletBalance(data ws.WalletBalance) {
-	log.Printf("OKX WalletBalance: %v", data)
+func handleWalletBalance(name string, data ws.WalletBalance) {
+	log.Printf("%s WalletBalance: %v", name, data)
 }
 
-func handleWalletBalanceOfSymbol(data ws.WalletBalance) {
+func handleWalletBalanceOfSymbol(name string, data ws.WalletBalance) {
 
 	for _, dd := range data.Data {
 		for _, bd := range dd.BalData {

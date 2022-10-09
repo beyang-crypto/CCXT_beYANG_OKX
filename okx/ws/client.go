@@ -226,7 +226,7 @@ func (b *OKXWS) subscribeArgs(args []ArgsCmd) {
 	}
 	b.subscribeCmds = append(b.subscribeCmds, cmd)
 	if b.cfg.DebugMode {
-		log.Printf("Создание json сообщения на подписку part 1")
+		log.Printf("STATUS: DEBUG\tEXCHANGE: OKX\tAPI: WS\tСоздание json сообщения на подписку part 1")
 	}
 	b.SendCmd(cmd)
 }
@@ -249,7 +249,7 @@ func (b *OKXWS) SendCmd(cmd Cmd) {
 		log.Fatal()
 	}
 	if b.cfg.DebugMode {
-		log.Printf("Создание json сообщения на подписку part 2")
+		log.Printf("STATUS: DEBUG\tEXCHANGE: OKX\tAPI: WS\tСоздание json сообщения на подписку part 2")
 	}
 	b.Send(string(data))
 }
@@ -277,7 +277,7 @@ func (b *OKXWS) Send(msg string) (err error) {
 		}
 	}()
 	if b.cfg.DebugMode {
-		log.Printf("Отправка сообщения на сервер. текст сообщения:%s", msg)
+		log.Printf("STATUS: DEBUG\tEXCHANGE: OKX\tAPI: WS\tОтправка сообщения на сервер. текст сообщения:%s", msg)
 	}
 
 	err = b.conn.WriteMessage(websocket.TextMessage, []byte(msg))
@@ -287,7 +287,7 @@ func (b *OKXWS) Send(msg string) (err error) {
 // подключение к серверу и постоянное чтение приходящих ответов
 func (b *OKXWS) Start() error {
 	if b.cfg.DebugMode {
-		log.Printf("Начало подключения к серверу")
+		log.Printf("STATUS: DEBUG\tEXCHANGE: OKX\tAPI: WS\tНачало подключения к серверу")
 	}
 	b.connect()
 
@@ -380,7 +380,7 @@ func (b *OKXWS) Auth() {
 		log.Fatal()
 	}
 	if b.cfg.DebugMode {
-		log.Printf("Создание json сообщения на подписку")
+		log.Printf("STATUS: DEBUG\tEXCHANGE: OKX\tAPI: WS\tСоздание json сообщения на подписку")
 	}
 	b.Send(string(data))
 }
@@ -429,7 +429,7 @@ func (b *OKXWS) ping() {
 func (b *OKXWS) messageHandler(data []byte) {
 
 	if b.cfg.DebugMode {
-		log.Printf("OKXWs %v", string(data))
+		log.Printf("STATUS: DEBUG\tEXCHANGE: OKX\tAPI: WS\tOKXWs %v", string(data))
 	}
 
 	//	в ошибке нет необходимости, т.к. она выходит каждый раз, когда не найдет элемент
@@ -486,7 +486,7 @@ func (b *OKXWS) messageHandler(data []byte) {
 					}`, string(data), err)
 				log.Fatal()
 			}
-			b.processTickers(instId, ticker)
+			b.processTickers("OKX", instId, ticker)
 		case "balance_and_position":
 			var walletBalance WalletBalance
 			err := json.Unmarshal(data, &walletBalance)
@@ -504,7 +504,7 @@ func (b *OKXWS) messageHandler(data []byte) {
 					}`, string(data), err)
 				log.Fatal()
 			}
-			b.processWalletBalance(walletBalance)
+			b.processWalletBalance("OKX", walletBalance)
 		default:
 			if string(data) == "pong" {
 
